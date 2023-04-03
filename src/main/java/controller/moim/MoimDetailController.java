@@ -31,7 +31,7 @@ public class MoimDetailController extends HttpServlet{
 		
 		User manager = Users.findById(moim.getManagerId()); 
 		req.setAttribute("manager", manager);
-		req.setAttribute("status", 0);
+	
 		List<Attendance> list = Attendances.findByMoimId(id); // Attendances에서 정보를 추출
 		
 	

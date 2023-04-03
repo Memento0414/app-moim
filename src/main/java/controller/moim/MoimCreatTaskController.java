@@ -28,7 +28,7 @@ public class MoimCreatTaskController extends HttpServlet{
 		String event =req.getParameter("event");
 		String type = req.getParameter("type");
 		String cate = req.getParameter("cate");
-		String description = req.getParameter("desc");
+		String description = req.getParameter("description");
 		int maxPerson = Integer.parseInt(req.getParameter("maxPerson"));
 		String date =req.getParameter("date");
 		String begin = req.getParameter("begin");
@@ -41,7 +41,7 @@ public class MoimCreatTaskController extends HttpServlet{
 		if(end.equals("")) {
 			endDate = null;
 		} else {
-			endDate = date + " " + end; 
+			endDate = date + " / " + end; 
 		}
 		
 		String id = UUID.randomUUID().toString().split("-")[0];
@@ -56,7 +56,8 @@ public class MoimCreatTaskController extends HttpServlet{
 		int r = Moims.create(id, managerId, event, type, cate, description, maxPerson, beginDate, endDate);
 		
 		if(r==1) {
-			req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
+			resp.sendRedirect("/moim/detail?id=" + id);
+			req.getRequestDispatcher("/WEB-INF/views/create-success.jsp").forward(req, resp);
 		} else {
 			resp.sendRedirect("/moim/create?cause=error");
 		}

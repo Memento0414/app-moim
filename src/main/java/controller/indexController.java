@@ -33,12 +33,12 @@ public class indexController extends HttpServlet {
 		System.out.println(result);
 //		List<Moim> list = Moims.findLastest();
 		req.setAttribute("latest", result);
+		session.commit();
+		session.close();
 		
 		req.setAttribute("millis", System.currentTimeMillis());
 		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
 		
-		session.commit();
-		session.close();
 		
 	}
 	

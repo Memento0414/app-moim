@@ -105,6 +105,7 @@ public class UserController extends HttpServlet {
 				return;
 			} else {
 				resp.sendRedirect("/user/login?cause=error");
+				return;
 			}
 			
 		}
@@ -113,6 +114,7 @@ public class UserController extends HttpServlet {
 			HttpSession session = req.getSession();
 			 session.invalidate();
 			resp.sendRedirect("/index");
+			return;
 		}
 		default -> {
 
