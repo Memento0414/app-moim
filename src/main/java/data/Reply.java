@@ -7,7 +7,7 @@ public class Reply {
 	String moim_id;
 	String writer;
 	String ment;
-	Date writed;
+	String writed;
 	
 	
 	public int getId() {
@@ -34,10 +34,10 @@ public class Reply {
 	public void setMent(String ment) {
 		this.ment = ment;
 	}
-	public Date getWrited() {
+	public String getWrited() {
 		return writed;
 	}
-	public void setWrited(Date writed) {
+	public void setWrited(String writed) {
 		this.writed = writed;
 	}
 	
