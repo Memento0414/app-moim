@@ -53,7 +53,7 @@ public class MoimAddReplyTaskController extends HttpServlet{
 			
 	
 			
-			resp.sendRedirect("/moim/detail?id= " + moimId);
+			resp.sendRedirect("/moim/detail?id=" + moimId);
 	
 	}
 	

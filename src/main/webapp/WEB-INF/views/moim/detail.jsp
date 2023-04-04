@@ -97,7 +97,7 @@
 				<input type="hidden" name="moimId" value="${moim.id }"/>
 				<c:choose>
 					<c:when test="${empty sessionScope.logonUser }">
-					<textarea style="width: 80%; resize: none" disablied placeholder="댓글을 입력해주세요." name="ment"></textarea>
+					<textarea style="width: 80%; resize: none" disabled placeholder="댓글을 입력해주세요." name="ment"></textarea>
 						<button type="submit" disabled>등록</button>
 					</c:when>
 						<c:otherwise>

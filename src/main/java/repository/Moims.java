@@ -96,9 +96,9 @@ public class Moims {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();
-			Moim moim = null;
+			Moim moim = new Moim();
 			if (rs.next()) {
-				moim = new Moim();
+				
 				moim.setId(rs.getString("ID"));
 				moim.setManagerId(rs.getString("MANAGER_ID"));
 				moim.setEvent(rs.getString("EVENT"));
@@ -115,6 +115,7 @@ public class Moims {
 				moim.setManagerAvatarUrl(rs.getString("MANAGER_URL"));
 			}
 			conn.close();
+			
 			return moim;
 
 		} catch (Exception e) {

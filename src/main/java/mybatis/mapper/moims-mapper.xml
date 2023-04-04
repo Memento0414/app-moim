@@ -5,17 +5,76 @@
 <mapper namespace="moims">
 	<select id="findLatest" resultType="data.Moim">
 		SELECT * FROM
-		(SELECT * FROM MOIMS WHERE BEGIN_DATE &gt; SYSDATE 
+		(SELECT * FROM
+		MOIMS WHERE BEGIN_DATE &gt; SYSDATE
 		ORDER BY BEGIN_DATE - SYSDATE)
 		WHERE ROWNUM &lt;= 3
 	</select>
-	
-	<select id="findById" resultType="data.Moim" parameterType="string">
-	    SELECT * FROM MOIMS WHERE ID = #{id}
+
+	<select id="findSomebyAtoBInCates" resultType="data.Moim" parameterType="hashmap">
+		SELECT * FROM
+		(SELECT ROWNUM RN, t.* FROM
+		(
+		SELECT * FROM 
+		MOIMS WHERE BEGIN_DATE &gt; SYSDATE
+		
+		<if test="arr != null">
+			AND CATE IN
+			<foreach collection="arr" item="c" open="(" separator="," close=")">
+				#{c}
+			</foreach>
+		</if>
+		
+		ORDER BY BEGIN_DATE
+		) t
+
+		)WHERE RN
+		BETWEEN #{a} AND #{b}
+
 	</select>
-	
+
+	<select id="findSomeByAtoB" resultType="data.Moim"
+		parameterType="hashmap">
+		SELECT * FROM
+		(SELECT ROWNUM RN, t.* FROM
+		(SELECT * FROM
+		MOIMS WHERE BEGIN_DATE &gt; SYSDATE ORDER BY BEGIN_DATE) t)
+		WHERE RN
+		BETWEEN #{a} AND #{b}
+	</select>
+
+	<select id="findSomeByCates" resultType="data.Moim"
+		parameterType="object[]">
+		SELECT * FROM MOIMS WHERE BEGIN_DATE &gt; SYSDATE
+		<if test="array != null">
+			AND CATE IN
+			<foreach collection="array" open="(" separator=","
+				close=")" item="one">
+				#{one}
+			</foreach>
+		</if>
+	</select>
+
+	<select id="countDatas" resultType="int" parameterType="string">
+		SELECT
+		COUNT(*) FROM MOIMS WHERE BEGIN_DATE &gt; SYSDATE
+		<if test="array != null">
+			AND CATE IN
+			<foreach collection="array" open="(" separator=","
+				close=")" item="one">
+				#{one}
+			</foreach>
+		</if>
+	</select>
+
+	<select id="findById" resultType="data.Moim"
+		parameterType="string">
+		SELECT * FROM MOIMS WHERE ID = #{id}
+	</select>
+
 	<update id="updateCurrentPerson" parameterType="string">
-		UPDATE MOIMS SET CURRENT_PERSON = CURRENT_PERSON + 1 WHERE ID = #{id} 
+		UPDATE MOIMS SET
+		CURRENT_PERSON = CURRENT_PERSON + 1 WHERE ID = #{id}
 	</update>
 
 
