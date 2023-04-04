@@ -39,7 +39,16 @@ public class MoimDetailController extends HttpServlet{
 		req.setAttribute("manager", manager);
 	
 		List<Attendance> list = Attendances.findByMoimId(id); // Attendances에서 정보를 추출
+		//==============================================================================
+		//---모임 댓글 가져오기 처리
+		SqlSessionFactory factory = (SqlSessionFactory)req.getServletContext().getAttribute("sqlSessionFactory");
+		SqlSession sqlSession = factory.openSession();
+		List<Reply> replys =sqlSession.selectList("replys.findByMoimId", id);
+		sqlSession.close();
 		
+		
+		req.setAttribute("replys", replys);
+		//=============================================================================
 	
 		for(Attendance a : list) {
 			User found = Users.findById(a.getUserId());

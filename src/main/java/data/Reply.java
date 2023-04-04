@@ -3,24 +3,23 @@ package data;
 import java.util.Date;
 
 public class Reply {
-	int id;
-	String moim_id;
+	String id;
+	String moimId;
 	String writer;
 	String ment;
-	String writed;
+	Date writed;
 	
-	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	public String getMoim_id() {
-		return moim_id;
+	public String getMoimId() {
+		return moimId;
 	}
-	public void setMoim_id(String moim_id) {
-		this.moim_id = moim_id;
+	public void setMoimId(String moimId) {
+		this.moimId = moimId;
 	}
 	public String getWriter() {
 		return writer;
@@ -34,12 +33,18 @@ public class Reply {
 	public void setMent(String ment) {
 		this.ment = ment;
 	}
-	public String getWrited() {
+	public Date getWrited() {
 		return writed;
 	}
-	public void setWrited(String writed) {
+	public void setWrited(Date writed) {
 		this.writed = writed;
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

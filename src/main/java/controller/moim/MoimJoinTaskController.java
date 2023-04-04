@@ -58,7 +58,7 @@ public class MoimJoinTaskController extends HttpServlet{
 		sqlSession.commit();
 		sqlSession.close();
 		
-		resp.sendRedirect("/moims/detail?id=" + target);
+		resp.sendRedirect("/moim/detail?id=" + target);
 		return;
 		
 		

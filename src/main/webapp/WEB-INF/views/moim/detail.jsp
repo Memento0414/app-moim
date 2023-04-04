@@ -14,7 +14,9 @@
 	<div class="root">
 		<%@ include file="/WEB-INF/views/common/top.jsp"%>
 		<div class="moim-detail-container ">
+		
 			<div class="moim-detail-content">
+			
 				<div style="text-align: left">
 					<div>
 						<small><b style="color: deeppink">${moim.managerName }</b>
@@ -88,9 +90,53 @@
 					</div>
 				</div>
 			</div>
-					<textarea type="text" placeholder="댓글을 입력해주세요."></textarea>
 		</div>
-
+		<div class="moim-add-reply">
+			<form action="/moim/add-reply-task" method="post"
+				style="display: flex; align-items: stretch; gap: 4px; justify-content: center;"> 
+				<input type="hidden" name="moimId" value="${moim.id }"/>
+				<c:choose>
+					<c:when test="${empty sessionScope.logonUser }">
+					<textarea style="width: 80%; resize: none" disablied placeholder="댓글을 입력해주세요." name="ment"></textarea>
+						<button type="submit" disabled>등록</button>
+					</c:when>
+						<c:otherwise>
+							<textarea style="width: 80%; resize: none"  placeholder="댓글을 입력해주세요." name="ment"></textarea>
+							<button type="submit">등록</button>
+						
+						</c:otherwise>
+				
+				</c:choose>
+			</form>
+		</div>
+		
+		
+		<div class="moim-replys">
+			 <c:choose>
+			  <c:when test="${empty replys }">
+			  		<div>등록된 댓글이 없습니다.</div>
+			  </c:when>
+			  <c:otherwise>
+			       <table>
+					<tr>
+						<th width ="10%">적상자</th>
+						<th>댓글내용</th>
+						<th width ="10%">작성일</th>
+						
+					</tr>
+					<c:forEach var="r" items="${replys }">
+					<tr>
+						<td>${r.writer }</td>
+						<td>${r.ment }</td>
+						<td><fmt:formatDate value="${r.writed }"
+											pattern="yyyy.MM.dd" /></td>
+					</tr>
+					</c:forEach>
+				</table>
+			  
+			  </c:otherwise>
+			 </c:choose>
+			</div>
 	</div>
 </body>
 </html>
