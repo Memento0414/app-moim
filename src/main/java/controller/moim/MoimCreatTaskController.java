@@ -57,7 +57,7 @@ public class MoimCreatTaskController extends HttpServlet{
 		
 		if(r==1) {
 			resp.sendRedirect("/moim/detail?id=" + id);
-			req.getRequestDispatcher("/WEB-INF/views/create-success.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
 		} else {
 			resp.sendRedirect("/moim/create?cause=error");
 		}

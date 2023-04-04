@@ -88,6 +88,7 @@
 					</div>
 				</div>
 			</div>
+					<textarea type="text" placeholder="댓글을 입력해주세요."></textarea>
 		</div>
 
 	</div>

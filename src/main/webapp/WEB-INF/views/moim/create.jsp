@@ -77,7 +77,7 @@
 			<div class="block">
 				<label>모임의 목적과 특징, 참석대상 등을 포함하는 소개글을 작성세요.</label>
 				<div class="block" style="min-height: 180px">
-					<textarea style="resize: none; flex: 1" name="desc"></textarea>
+					<textarea style="resize: none; flex: 1" name="description"></textarea>
 				</div>
 			</div>
 			<div class="block">
